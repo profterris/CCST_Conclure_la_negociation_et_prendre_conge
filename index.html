@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conclure la négociation et prendre congé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Fiche d'exercices en thème clair : blocs = séances, cartes dépliables, corrections masquables */
+:root {
+  --bg:        #f4f6f9;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --border:    #dfe3ea;
+  --border-hi: #b9c0ce;
+  --text:      #1d2230;
+  --text-dim:  #5c6476;
+  --accent:    #b97d00;
+  --accent-bg: #fff6df;
+  --green:     #1b8047;
+  --green-bg:  #ecf7f0;
+  --green-bd:  #c9e6d4;
+  --green-dk:  #12552f;
+  --red:       #c23b3b;
+  --blue:      #2d69ad;
+  --blue-bg:   #edf3fb;
+  --purple:    #6f45ad;
+  --font-head: 'Syne', 'Trebuchet MS', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius:    10px;
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #ffffff 0%, #eef2f8 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 20px 32px;
+  text-align: center;
+}
+.site-header .kicker {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.site-header h1 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 6vw, 38px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.site-header .sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 auto 20px;
+}
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 22px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+/* ── NAV ANCRES ──────────────────────────────────────────── */
+.nav-anchors {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-anchors a {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.nav-anchors a:hover, .nav-anchors a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+/* ── CONTENEUR PRINCIPAL ─────────────────────────────────── */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px 18px 80px;
+}
+
+/* ── TITRE DE BLOC ───────────────────────────────────────── */
+.bloc-titre {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 52px 0 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.bloc-titre:first-child { margin-top: 0; }
+.bloc-titre .icone { font-size: 26px; flex-shrink: 0; }
+.bloc-titre h2 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.bloc-titre h2 small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ── MÉMO ────────────────────────────────────────────────── */
+.memo {
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.memo .memo-titre {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.memo code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.memo .note { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+
+/* ── CARTE EXERCICE ──────────────────────────────────────── */
+.exo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.exo-card:hover { border-color: var(--border-hi); }
+
+.exo-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.exo-header::-webkit-details-marker { display: none; }
+.exo-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.exo-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.badge-1 { background: #e9f6ee; color: var(--green); border: 1px solid #bfe2cc; }
+.badge-2 { background: var(--accent-bg); color: #8a5d00; border: 1px solid #efd798; }
+.badge-3 { background: #fbeaea; color: var(--red); border: 1px solid #efc4c4; }
+.badge-exam { background: #f2ecfa; color: var(--purple); border: 1px solid #d9c9ef; }
+
+.exo-titre-txt {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.chevron { color: var(--text-dim); font-size: 13px; flex-shrink: 0; transition: transform .2s; }
+details[open] .chevron { transform: rotate(180deg); }
+
+/* ── CORPS DE L'EXERCICE ─────────────────────────────────── */
+.exo-body { padding: 0 16px 20px; border-top: 1px solid var(--border); }
+
+.contexte {
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.contexte strong { color: var(--text); }
+
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.tableau-donnees {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+}
+.tableau-donnees th {
+  background: #eef1f6;
+  color: var(--text-dim);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.tableau-donnees td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.tableau-donnees tr:last-child td { border-bottom: none; }
+.tableau-donnees td.num { font-weight: 700; color: var(--text); white-space: nowrap; }
+
+.questions { margin: 18px 0 0; }
+.question { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+.question .q-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.question p { font-size: 14px; margin: 0; min-width: 0; }
+
+/* ── COUP DE POUCE ───────────────────────────────────────── */
+.ordre-grandeur {
+  background: var(--accent-bg);
+  border: 1px solid #efd798;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #6e4b00;
+  margin: 12px 0 0;
+}
+.ordre-grandeur::before { content: "💡 "; }
+
+/* ── BOUTON CORRECTION ───────────────────────────────────── */
+.btn-corrige {
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  margin-top: 18px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-corrige:hover, .btn-corrige:focus-visible { border-color: var(--green); color: var(--green); }
+
+/* ── CORRECTION ──────────────────────────────────────────── */
+.correction {
+  display: none;
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.correction.visible { display: block; }
+.correction .corr-etape {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--green-bd);
+}
+.correction .corr-etape:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.correction .c-num {
+  display: inline-block;
+  background: var(--green);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  margin-right: 6px;
+}
+.correction code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.correction .res { font-family: var(--font-head); font-weight: 700; color: var(--text); }
+.correction .conclu { margin-top: 8px; font-size: 13.5px; color: #2c6244; font-style: italic; }
+.correction .tableau-corr { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; background: #ffffff; }
+.correction .tableau-corr th {
+  background: #dff0e6;
+  color: var(--green-dk);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  text-align: left;
+}
+.correction .tableau-corr td { padding: 6px 10px; border-bottom: 1px solid var(--green-bd); color: #24402f; vertical-align: top; }
+.correction .tableau-corr td.val { font-weight: 700; color: var(--green); }
+
+/* ── SÉPARATEUR ──────────────────────────────────────────── */
+hr.section-sep { border: none; border-top: 1px solid var(--border); margin: 54px 0 0; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  background: var(--surface);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .exo-titre-txt { font-size: 13.5px; }
+  .contexte { font-size: 13.5px; }
+  .tableau-donnees { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="kicker">✍️ Bloc 1 – BTS CCST 2e année · épreuve E5</div>
+  <h1>Conclure la négociation<br>et prendre congé</h1>
+  <p class="sub">Chapitre 11. 20 exercices en 5 séances, avec l'entreprise AIRVOLT. Ouvre un exercice, réponds sur ton ordinateur, puis vérifie avec la correction.</p>
+  <div class="legende">
+    <span class="badge badge-1">⬆ décollage</span> je découvre
+    <span class="badge badge-2">◆ intermédiaire</span> j'applique
+    <span class="badge badge-exam">★ examen</span> je m'entraîne
+  </div>
+  <nav class="nav-anchors">
+    <a href="#referentiel">0 · Repères</a>
+    <a href="#signaux">1 · Repérer les signaux d'achat</a>
+    <a href="#techniques">2 · Les techniques de conclusion</a>
+    <a href="#complementaires">3 · Les ventes complémentaires</a>
+    <a href="#conge">4 · Formaliser l'accord et prendre congé</a>
+    <a href="#examen">5 · Sujets type examen</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="bloc-titre" id="referentiel">
+  <span class="icone">📌</span>
+  <h2><small>Repères · référentiel BTS CCST</small>Ce que tu travailles dans ce chapitre</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 épreuve E5 – bloc 1</div>
+  <code>Compétences : C1.2 conseiller, prescrire et communiquer tout au long du processus de négociation · C1.4 mettre en œuvre l'entretien de vente technico-commercial · C1.5 assurer le suivi d'une affaire.</code>
+  <code>Critères d'évaluation : une démarche proactive de négociation est mise en œuvre · des outils de communication et de négociation adaptés au contexte sont mobilisés · la prestation définie est formalisée conformément à l'accord · des actions de suivi sont effectuées.</code>
+  <code>Objectif final : en négociation simulée (situation 2), repérer les signaux d'achat, conclure avec une technique adaptée, proposer une vente complémentaire utile au client, formaliser l'accord et prendre congé en annonçant le suivi.</code>
+  <code>Le fil rouge : AIRVOLT vend et installe des compresseurs d'air industriels, avec contrats de maintenance. Tu y es technico-commercial(e) en alternance, avec ton tuteur Julien Morel. Clients : Menuiserie Duval (Marc Duval, dirigeant) · Clinique Saint-Roch (Sophie Navarro, acheteuse ; Karim Belaïd, responsable technique) · Garage Ferreira (Ana Ferreira, gérante).</code>
+  <code>Sources : manuel Nathan, chapitre 11 « Conclure la vente et maintenir une relation client durable », fiche ressource 1, p. 201 · guide d'accompagnement pédagogique du BTS CCST (compétences C1.4 et C1.5) · N. Rackham, <em>SPIN Selling</em>, McGraw-Hill, 1988 (<a href="https://www.routledge.com/SPIN-Selling-1st-Edition/Rackham/p/book/9780566076893">fiche éditeur</a>) · J. L. Freedman et S. C. Fraser, « Compliance without pressure : the foot-in-the-door technique », <em>Journal of Personality and Social Psychology</em>, 1966, 4(2), p. 195-202 (<a href="https://pubmed.ncbi.nlm.nih.gov/5969145/">notice PubMed</a>) · R.-V. Joule et J.-L. Beauvois, <em>Petit traité de manipulation à l'usage des honnêtes gens</em>, Presses universitaires de Grenoble, 1987 · R. Cialdini, <em>Influence</em>, 1984.</code>
+</div>
+<hr class="section-sep">
+
+<!-- BLOC 1 -->
+<div class="bloc-titre" id="signaux">
+  <span class="icone">🚦</span>
+  <h2><small>Séance 1</small>Bloc 1 – Le client est-il prêt à acheter ?</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Conclure = obtenir l'accord du client, une fois qu'il n'émet plus d'opposition et qu'il a compris l'intérêt de la solution. C'est le commercial qui prend l'initiative.</code>
+  <code>Signal d'achat verbal = phrase ou question qui suggère que le client a pris sa décision : confirmation directe · argumentation du client sur le produit · confirmation des conditions d'utilisation · projection en position d'utilisateur.</code>
+  <code>Signal d'achat non verbal = attitude détendue · bras et jambes décroisés · hochements de tête positifs.</code>
+  <code>Un signal non verbal seul ne suffit pas : confirme-le par une question avant de conclure.</code>
+  <code>Erreur fréquente = continuer à argumenter après un signal d'achat : tu risques de faire naître de nouvelles objections.</code>
+  <code>En vente complexe B to B, l'étude de N. Rackham (plus de 35 000 entretiens observés) montre que les techniques de conclusion « forcées » n'augmentent pas les chances de succès : le signal d'achat se lit dans le contexte de tout l'entretien.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 1</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Signal d'achat ou pas ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ton tuteur <strong>Julien Morel</strong> a noté des phrases et des attitudes de clients pendant ses rendez-vous de la semaine. L'enseignant projette la liste : la classe vote à main levée pour chaque ligne, puis tu vérifies.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Ce que dit ou fait le client</th></tr></thead><tbody><tr><td>1</td><td>« Bon, ce compresseur, je le prends. »</td></tr><tr><td>2</td><td>« Avec un modèle aussi silencieux, mes gars pourront enfin travailler sans casque. »</td></tr><tr><td>3</td><td>« C'est 2 000 € plus cher que chez votre concurrent. »</td></tr><tr><td>4</td><td>« Votre technicien intervient bien sous 24 h en cas de panne ? »</td></tr><tr><td>5</td><td>Le client se recule, croise les bras et regarde sa montre.</td></tr><tr><td>6</td><td>« On pourrait l'installer dans l'ancien local à peinture, non ? »</td></tr><tr><td>7</td><td>Le client hoche la tête et feuillette de nouveau la fiche technique.</td></tr><tr><td>8</td><td>« Je dois réfléchir, rappelez-moi en septembre. »</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque ligne : signal verbal, signal non verbal ou pas un signal d'achat.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour chaque signal verbal, précise son type (confirmation directe, argumentation du client, confirmation des conditions, projection).</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> une objection ou une remise à plus tard n'est jamais un signal d'achat.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>Classement</th><th>Type</th></tr></thead><tbody><tr><td>1</td><td>signal verbal</td><td class="val">confirmation directe de l'achat</td></tr><tr><td>2</td><td>signal verbal</td><td class="val">argumentation du client sur le produit</td></tr><tr><td>3</td><td>pas un signal</td><td class="val">objection sur le prix</td></tr><tr><td>4</td><td>signal verbal</td><td class="val">confirmation des conditions d'utilisation (service après-vente)</td></tr><tr><td>5</td><td>pas un signal</td><td class="val">attitude de fermeture ou d'impatience</td></tr><tr><td>6</td><td>signal verbal</td><td class="val">projection en position d'utilisateur</td></tr><tr><td>7</td><td>signal non verbal</td><td class="val">hochement de tête, intérêt pour le produit</td></tr><tr><td>8</td><td>pas un signal</td><td class="val">report de la décision</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">La ligne 4 se confirme par une réponse précise (« oui, sous 24 h, c'est dans le contrat ») suivie d'une proposition de conclusion.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 2</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Le moment raté chez Garage Ferreira</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Voici un extrait de l'entretien de Kevin, autre alternant chez AIRVOLT, avec <strong>Ana Ferreira</strong>, gérante du Garage Ferreira (6 salariés). Elle veut remplacer un compresseur à piston bruyant.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Réplique</th><th>Dialogue</th></tr></thead><tbody><tr><td>R1 – Kevin</td><td>« Le modèle P8 produit 900 litres par minute, largement assez pour vos 4 postes. »</td></tr><tr><td>R2 – Ana Ferreira</td><td>« Et il tiendrait sous l'escalier, à la place de l'ancien ? »</td></tr><tr><td>R3 – Kevin</td><td>« Oui, il fait 60 cm de large. En plus, il consomme 15 % d'énergie en moins que votre modèle actuel. Et il existe en trois couleurs. »</td></tr><tr><td>R4 – Ana Ferreira</td><td>« Ah oui, les factures d'électricité baisseraient… Et la livraison, c'est rapide ? »</td></tr><tr><td>R5 – Kevin</td><td>« Sous 10 jours. Je vous parle aussi de notre gamme à vis ? Elle est encore plus performante. »</td></tr><tr><td>R6 – Ana Ferreira</td><td>« Ah… Il y a un autre modèle ? Bon, je vais réfléchir alors. Envoyez-moi la documentation des deux. »</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Relève les signaux d'achat d'Ana Ferreira et nomme leur type.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Identifie la réplique où Kevin aurait dû conclure.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Explique pourquoi l'entretien se termine sans accord.</p></div>
+      <div class="question"><span class="q-num">4</span><p>Réécris la réplique R5 pour conclure.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> compte le nombre de signaux avant R5. Que fait Kevin à chaque fois ?</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> R2 : projection en position d'utilisatrice · R4 : argumentation de la cliente sur le produit (« les factures baisseraient ») et confirmation des conditions (livraison).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Au plus tard en R5, juste après la question sur la livraison. On pouvait même conclure dès R3.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Kevin continue d'argumenter (couleurs, autre gamme) au lieu de conclure. Il crée un nouveau choix et donc un doute : la cliente reporte sa décision.</div>
+      <div class="corr-etape"><span class="c-num">4</span> <p class="res">Exemple : « Sous 10 jours. Si nous validons aujourd'hui, mon technicien peut l'installer le lundi 16. Je prépare le bon de commande ? »</p><p class="conclu">Repérer le bon moment relève de la démarche proactive de négociation attendue en situation 2 de l'épreuve E5.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 3</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Confirmer un signal non verbal</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Lors de la démonstration d'un compresseur à la Clinique Saint-Roch, <strong>Karim Belaïd</strong>, responsable technique, se détend, décroise les bras et pose sa main sur la machine. Sophie Navarro, l'acheteuse, reste silencieuse et prend des notes.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Indique quel interlocuteur envoie un signal d'achat non verbal.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige une question pour confirmer ce signal avant de conclure.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Explique pourquoi tu ne peux pas conclure avec Karim Belaïd seul.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> pense au centre d'achat : qui utilise, qui achète ?</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Karim Belaïd : attitude détendue, bras décroisés, contact avec le produit.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : « Monsieur Belaïd, ce niveau sonore vous paraît compatible avec la proximité du bloc opératoire ? »</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Il est utilisateur et prescripteur, mais c'est Sophie Navarro qui achète.</p><p class="conclu">Il faut obtenir l'adhésion de chaque membre du centre d'achat : après la confirmation de Karim Belaïd, tu te tournes vers Sophie Navarro.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 4</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Le jeu des signaux cachés</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu travailles en binôme sur la situation de négociation de ta fiche descriptive E5. Le binôme joue ton client.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Donne à ton binôme 2 minutes pour noter, en secret, 2 signaux d'achat (un verbal, un non verbal) adaptés à ton client.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Jouez 3 minutes d'argumentation chronométrées : ton binôme glisse ses 2 signaux.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Dès que tu repères un signal, dis « stop » et formule une proposition de conclusion. Puis inversez les rôles.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> un point par signal repéré, un point bonus si ta conclusion est formulée dans les 10 secondes.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : signaux cohérents avec le produit et le client de ta fiche descriptive (pas de signal générique).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Réaction attendue : tu arrêtes d'argumenter, tu confirmes si besoin, tu conclus.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Lors de la négociation simulée, la commission observe ta capacité à saisir le moment de conclure : c'est un élément de la démarche proactive.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 2 -->
+<div class="bloc-titre" id="techniques" style="margin-top:40px">
+  <span class="icone">🎯</span>
+  <h2><small>Séance 2</small>Bloc 2 – Comment conclure ?</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Conclusion directe = le commercial formule directement sa proposition : « Nous allons remplir le bon de commande ensemble. »</code>
+  <code>Conclusion alternative = le commercial propose deux solutions : « Vous préférez le modèle X ou le modèle Y ? »</code>
+  <code>Conclusion implicite = le commercial agit comme si le client avait pris sa décision : « Vous recevez votre commande sous 48 heures. »</code>
+  <code>Conclusion en escalier = une suite de questions qui obtiennent des réponses positives, jusqu'à la décision finale.</code>
+  <code>L'escalier s'appuie sur l'effet de « pied-dans-la-porte » (Freedman et Fraser, 1966 ; Joule et Beauvois, 1987) et sur le principe d'engagement et de cohérence (Cialdini, 1984) : une personne qui a dit oui à de petites demandes accepte plus facilement une demande plus importante.</code>
+  <code>Éthique = une technique de conclusion sert une solution adaptée au besoin réel du client, jamais à forcer une vente (obligation légale de conseil).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 5</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Quelle technique ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">L'enseignant projette les phrases de conclusion de l'équipe commerciale d'AIRVOLT. Course de vitesse : le premier qui donne la bonne réponse marque le point.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Phrase</th></tr></thead><tbody><tr><td>1</td><td>« Je vous propose de signer le bon de commande maintenant. »</td></tr><tr><td>2</td><td>« Vous préférez une installation le mardi ou le jeudi ? »</td></tr><tr><td>3</td><td>« Mon technicien vous appellera demain pour la visite du local. »</td></tr><tr><td>4</td><td>« Le débit vous convient ? Le niveau sonore aussi ? Et la livraison sous 10 jours ? Alors je lance la commande ? »</td></tr><tr><td>5</td><td>« Vous partez sur le contrat de maintenance 1 an ou 3 ans ? »</td></tr><tr><td>6</td><td>« Je note votre adresse de livraison : c'est bien l'atelier de la rue des Forges ? »</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Associe chaque phrase à une technique : directe, alternative, implicite ou en escalier.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> implicite = le commercial parle de l'après-achat comme si c'était déjà décidé.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>Technique</th></tr></thead><tbody><tr><td>1</td><td class="val">directe</td></tr><tr><td>2</td><td class="val">alternative</td></tr><tr><td>3</td><td class="val">implicite</td></tr><tr><td>4</td><td class="val">en escalier</td></tr><tr><td>5</td><td class="val">alternative</td></tr><tr><td>6</td><td class="val">implicite</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 6</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Rédiger 4 conclusions pour Menuiserie Duval</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte"><strong>Marc Duval</strong>, dirigeant de la Menuiserie Duval (12 salariés), est convaincu par le compresseur à vis <strong>ZV15</strong> (9 800 € HT, installation 850 € HT). Il veut une machine en place avant la fin du mois. Il hésite entre une installation dans l'atelier ou dans un local séparé.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige une phrase de conclusion directe.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige une conclusion alternative qui s'appuie sur son hésitation.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Rédige une conclusion implicite qui s'appuie sur son délai.</p></div>
+      <div class="question"><span class="q-num">4</span><p>Rédige une conclusion en escalier de 3 questions.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> utilise les informations données par le client : c'est ce qui rend la conclusion naturelle.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> « Monsieur Duval, je vous propose de valider la commande du ZV15 aujourd'hui. »</div>
+      <div class="corr-etape"><span class="c-num">2</span> « Vous préférez que nous l'installions dans l'atelier ou dans le local séparé ? »</div>
+      <div class="corr-etape"><span class="c-num">3</span> « Pour une mise en service avant la fin du mois, notre technicien passe jeudi faire le relevé du local. »</div>
+      <div class="corr-etape"><span class="c-num">4</span> <p class="res">« Le débit couvre bien tous vos postes ? Le niveau sonore vous convient ? La mise en service avant la fin du mois, c'est ce qu'il vous faut ? Alors nous lançons la commande. »</p><p class="conclu">Plusieurs réponses sont possibles : la commission attend une technique cohérente avec ce que le client a dit.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 7</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Choisir la technique selon le client</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ton tuteur te demande de préparer la conclusion de trois rendez-vous.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Client</th><th>Situation en fin d'entretien</th></tr></thead><tbody><tr><td>Marc Duval</td><td>Dirigeant pressé, décide seul, a déjà dit « c'est ce qu'il me faut ».</td></tr><tr><td>Sophie Navarro</td><td>Acheteuse hésitante entre une offre avec ou sans sécheur d'air.</td></tr><tr><td>Ana Ferreira</td><td>Gérante prudente, d'accord sur chaque point mais qui n'ose pas s'engager.</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Choisis une technique de conclusion pour chaque client.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Justifie chaque choix en une phrase.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Client</th><th>Technique</th><th>Justification</th></tr></thead><tbody><tr><td>Marc Duval</td><td>directe ou implicite</td><td class="val">il a décidé et veut gagner du temps</td></tr><tr><td>Sophie Navarro</td><td>alternative</td><td class="val">elle hésite entre deux options : on l'aide à choisir sans remettre l'achat en question</td></tr><tr><td>Ana Ferreira</td><td>en escalier</td><td class="val">elle dit oui à chaque point : on récapitule ces accords pour l'amener à la décision</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Adapter sa technique au profil de l'interlocuteur correspond au critère « des outils de communication et de négociation adaptés au contexte sont mobilisés ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 8</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Conclusion express en 90 secondes</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">L'enseignant projette une roue (ou un tirage au hasard sur l'ordinateur) avec les 4 techniques. Tu passes devant le groupe avec le client de ta fiche descriptive.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Présente ton client en une phrase, puis découvre la technique tirée au sort.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Joue 90 secondes chronométrées : fin d'argumentation, signal d'achat donné par un camarade, conclusion avec la technique imposée.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Le groupe vote : la technique est-elle reconnaissable et naturelle ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : phrase de conclusion claire, adaptée au produit et au client, ton assuré, silence après la question de conclusion pour laisser le client répondre.</div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Prépare dans les annexes de ta fiche descriptive deux phrases de conclusion adaptées à ton client : c'est un outil de négociation.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 3 -->
+<div class="bloc-titre" id="complementaires" style="margin-top:40px">
+  <span class="icone">➕</span>
+  <h2><small>Séance 3</small>Bloc 3 – Proposer une vente complémentaire utile</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Vente complémentaire = proposée une fois l'accord obtenu sur la vente principale : accessoires · services (installation, maintenance, formation) · extension de garantie.</code>
+  <code>Moment = après l'accord sur la vente principale, jamais avant (sinon tu fragilises la décision).</code>
+  <code>Pertinence = la vente complémentaire répond à un besoin repéré pendant la découverte · obligation de conseil et éthique : on ne vend pas ce qui est inutile au client.</code>
+  <code>Hausse du panier (%) = montant des ventes complémentaires / montant de la vente principale × 100.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 9</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Utile ou pas pour Marc Duval ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Marc Duval vient d'accepter le <strong>ZV15</strong>. Pendant la découverte, tu as appris qu'il peint ses menuiseries au pistolet (l'humidité dans l'air laisse des défauts), qu'il n'a pas de technicien en interne et que l'atelier est déjà sous garantie constructeur 2 ans.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Proposition</th><th>Prix HT</th></tr></thead><tbody><tr><td>A. Sécheur d'air</td><td>1 450 €</td></tr><tr><td>B. Contrat de maintenance 3 ans</td><td>1 200 € par an</td></tr><tr><td>C. Extension de garantie 2 ans supplémentaires</td><td>690 €</td></tr><tr><td>D. Second compresseur de secours</td><td>9 800 €</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque proposition : pertinente, discutable ou non pertinente.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Justifie avec une information de la découverte.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Proposition</th><th>Classement</th><th>Justification</th></tr></thead><tbody><tr><td>A</td><td>pertinente</td><td class="val">l'air sec évite les défauts de peinture</td></tr><tr><td>B</td><td>pertinente</td><td class="val">pas de technicien en interne</td></tr><tr><td>C</td><td>discutable</td><td class="val">utile seulement après les 2 ans de garantie constructeur ; à proposer plus tard</td></tr><tr><td>D</td><td>non pertinente</td><td class="val">aucun besoin exprimé ; risque de perdre la confiance du client</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Le conseil et la prescription sont évalués en situation 2 : la commission te demandera la valeur ajoutée apportée au client.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 10</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Calculer la hausse du panier</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Vente principale à la Menuiserie Duval : compresseur ZV15 (<strong>9 800 € HT</strong>) + installation (<strong>850 € HT</strong>). Marc Duval accepte le sécheur d'air (1 450 € HT) et le contrat de maintenance 3 ans (1 200 € HT par an).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le montant HT de la vente principale.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule le montant HT des ventes complémentaires (contrat sur 3 ans).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Calcule la hausse du panier en % (arrondi à 0,1 %).</p></div>
+      <div class="question"><span class="q-num">4</span><p>Que peut conclure ton tuteur ?</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> hausse = ventes complémentaires / vente principale × 100.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>Vente principale = 9 800 + 850 = 10 650 € HT</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>Ventes complémentaires = 1 450 + (1 200 × 3) = 5 050 € HT</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <code>Hausse du panier = 5 050 / 10 650 × 100 = 47,4 %</code></div>
+      <div class="corr-etape"><span class="c-num">4</span> <p class="res">Le chiffre d'affaires de l'affaire augmente de 47,4 %.</p><p class="conclu">Le contrat de maintenance assure aussi des contacts réguliers avec le client : c'est un outil de suivi et de fidélisation.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 11</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Argumenter le sécheur d'air en 3 phrases</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Marc Duval vient de dire oui au ZV15. Tu dois maintenant proposer le sécheur d'air, sans remettre en cause l'accord obtenu.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige une phrase de transition qui confirme l'accord principal.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige un argument qui part du besoin repéré en découverte (méthode caractéristique – avantage – preuve).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Rédige une question de conclusion pour le sécheur.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> « Parfait, votre ZV15 sera installé avant la fin du mois. »</div>
+      <div class="corr-etape"><span class="c-num">2</span> « Vous m'avez dit que vos peintures au pistolet présentaient parfois des défauts. Le sécheur retire l'humidité de l'air comprimé : vos finitions restent nettes du premier coup. La Menuiserie Lebrun, à Vannes, l'utilise depuis deux ans. »</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">« Je l'ajoute au bon de commande, pour une installation en même temps que le compresseur ? »</p><p class="conclu">C'est une conclusion implicite : elle s'appuie sur l'accord déjà obtenu.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 12</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">La vente complémentaire de ta fiche descriptive</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta négociation E5 porte sur une solution technique. La commission peut te demander ce que tu aurais pu proposer en plus.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Liste 2 ventes complémentaires possibles dans ton entreprise pour ton client (produit, service, garantie).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour chacune, note le besoin du client qui la justifie.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Présente-les en 1 minute chronométrée à ton binôme, qui joue le client et peut refuser.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> si tu ne trouves pas de besoin qui justifie la vente complémentaire, ne la propose pas.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : propositions réalistes, présentes dans l'offre de ton entreprise, avec un prix connu.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Chaque proposition est reliée à une information de ta découverte (contrainte technique, absence de personnel qualifié, usage intensif…).</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Si le client refuse, tu acceptes sans insister : l'accord principal reste prioritaire. Tu peux noter la proposition pour une action de suivi.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 4 -->
+<div class="bloc-titre" id="conge" style="margin-top:40px">
+  <span class="icone">🤝</span>
+  <h2><small>Séance 4</small>Bloc 4 – Formaliser l'accord et prendre congé</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Issues possibles d'un entretien en vente complexe (N. Rackham) : commande · avancée (le client s'engage sur une action concrète qui fait progresser l'affaire) · prolongation (l'entretien se termine sans engagement précis) · échec.</code>
+  <code>Formaliser l'accord = reformuler ce qui est décidé (produit, prix, remise, délai, modalités de paiement) puis le faire signer : devis signé ou bon de commande.</code>
+  <code>Montant TTC = montant HT × 1,20 (TVA à 20 %) · acompte = pourcentage du montant TTC prévu dans les conditions de vente.</code>
+  <code>Prendre congé, que la vente soit réussie ou non = remercier · rappeler sa disponibilité · laisser sa carte de visite · annoncer la prochaine étape · saluer.</code>
+  <code>Après l'entretien = compte rendu de visite et mise à jour du CRM (compétence C1.5).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 13</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Commande, avancée, prolongation ou échec ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Voici la dernière phrase de six entretiens menés par l'équipe AIRVOLT.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Fin d'entretien</th></tr></thead><tbody><tr><td>1</td><td>« C'est signé, je vous renvoie le bon de commande scanné ce soir. »</td></tr><tr><td>2</td><td>« Très intéressant. On se rappelle dans quelques semaines. »</td></tr><tr><td>3</td><td>« D'accord pour une visite technique du local jeudi à 10 h avec Karim Belaïd. »</td></tr><tr><td>4</td><td>« Nous avons choisi un autre fournisseur. »</td></tr><tr><td>5</td><td>« Envoyez-moi une documentation. »</td></tr><tr><td>6</td><td>« Je vous organise une réunion avec notre directrice financière le 12. »</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque fin d'entretien selon les 4 issues de N. Rackham.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour les prolongations, propose une avancée que le commercial aurait pu obtenir.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> une avancée = une action précise, avec une date, que le client accepte de faire.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> 1 : commande · 2 : prolongation · 3 : avancée · 4 : échec · 5 : prolongation · 6 : avancée.</div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="res">Ligne 2 : fixer une date de démonstration. Ligne 5 : programmer un appel de 15 minutes pour commenter la documentation, à une date précise.</p><p class="conclu">Ces avancées correspondent à des objectifs de repli : à l'épreuve E5, un entretien sans commande peut être réussi si un engagement concret est obtenu.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 14</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Chiffrer le bon de commande Duval</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Accord final avec Marc Duval : compresseur ZV15 (9 800 € HT) + sécheur d'air (1 450 € HT) + installation (850 € HT). Tu as accordé une <strong>remise de 5 %</strong> sur le matériel uniquement. TVA à 20 %. Les conditions de vente d'AIRVOLT prévoient un <strong>acompte de 30 %</strong> du TTC à la commande. Le contrat de maintenance fait l'objet d'un contrat séparé.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Calcule le montant du matériel, puis la remise.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Calcule le montant total HT, la TVA et le montant TTC.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Calcule l'acompte à encaisser.</p></div>
+      <div class="question"><span class="q-num">4</span><p>Rédige la phrase de reformulation de l'accord avant signature.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> la remise ne s'applique pas à l'installation.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <code>Matériel = 9 800 + 1 450 = 11 250 € HT</code><code>Remise = 11 250 × 5 % = 562,50 €</code></div>
+      <div class="corr-etape"><span class="c-num">2</span> <code>Total HT = 11 250 – 562,50 + 850 = 11 537,50 €</code><code>TVA = 11 537,50 × 20 % = 2 307,50 €</code><code>TTC = 11 537,50 + 2 307,50 = 13 845,00 €</code></div>
+      <div class="corr-etape"><span class="c-num">3</span> <code>Acompte = 13 845,00 × 30 % = 4 153,50 €</code></div>
+      <div class="corr-etape"><span class="c-num">4</span> <p class="res">« Je récapitule : le ZV15 et son sécheur, avec 5 % de remise sur le matériel, installés avant le 30 pour 11 537,50 € HT, soit 13 845 € TTC, avec un acompte de 4 153,50 € à la commande. C'est bien cela ? »</p><p class="conclu">La reformulation correspond au critère « la prestation définie est formalisée conformément à l'accord ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 15</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Réparer une prise de congé ratée</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Sophie Navarro, acheteuse à la Clinique Saint-Roch, vient d'annoncer qu'elle ne retient pas l'offre d'AIRVOLT cette année : le budget est reporté. Kevin répond : <em>« Bon, tant pis. Au revoir. »</em> et range ses affaires.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Liste les étapes de la prise de congé que Kevin a oubliées.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Réécris sa prise de congé en 4 phrases au maximum.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Indique l'action de suivi qu'il doit noter dans le CRM.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Remercier · rappeler sa disponibilité · laisser sa carte de visite · annoncer une prochaine étape · saluer avec courtoisie.</div>
+      <div class="corr-etape"><span class="c-num">2</span> « Je comprends, merci pour le temps que vous m'avez accordé, ainsi que M. Belaïd. Je reste disponible pour toute question technique : voici ma carte. Je vous propose de faire un point en septembre, au moment de la préparation de votre budget. Excellente journée, madame Navarro. »</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Relance programmée en septembre, motif du refus (budget reporté), interlocuteurs rencontrés.</p><p class="conclu">Une vente non conclue reste une affaire à suivre : c'est le critère « des actions de suivi sont effectuées ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 16</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Deux prises de congé chronométrées</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu reprends le client de ta fiche descriptive E5. Ton binôme joue le client, un troisième étudiant chronomètre et observe.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Scénario A, vente conclue : reformule l'accord et prends congé en 45 secondes.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Scénario B, vente non conclue : obtiens une avancée et prends congé en 45 secondes.</p></div>
+      <div class="question"><span class="q-num">3</span><p>L'observateur coche les 5 étapes de la prise de congé, puis vous changez de rôle.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus A : reformulation de l'accord chiffré · remerciement · prochaine étape (livraison, installation, appel de suivi) · salutations.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Attendus B : engagement précis et daté du client · remerciement · disponibilité · carte de visite · salutations.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">La fin de la négociation simulée est la dernière image que garde la commission : elle doit être préparée autant que l'ouverture.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 5 -->
+<div class="bloc-titre" id="examen" style="margin-top:40px">
+  <span class="icone">🎓</span>
+  <h2><small>Séance 5</small>Bloc 5 – Entraînement à l'épreuve E5</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Épreuve E5 – conception et négociation de solutions technico-commerciales (anciennement E4).</code>
+  <code>Situation 2 : négociation simulée à partir de la situation technico-commerciale proposée (15 à 20 min) + entretien avec la commission (10 min au maximum).</code>
+  <code>Pendant l'entretien, tu analyses la valeur ajoutée apportée au client (conseil, prescription) et les actions technico-commerciales à envisager après la simulation.</code>
+  <code>Compétences évaluées en situation 2 : C1.2 · C1.4 · C1.5.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 17</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Sujet complet : conclure avec la Clinique Saint-Roch</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">La Clinique Saint-Roch remplace le compresseur qui alimente ses ateliers techniques. Karim Belaïd a validé techniquement le compresseur <strong>ZV15</strong>. Sophie Navarro a un budget de <strong>14 000 € HT</strong> et hésite sur le contrat de maintenance. La simulation démarre à la fin de l'argumentation.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Prépare en 5 minutes : 2 signaux d'achat attendus, ta technique de conclusion, ta vente complémentaire, ta reformulation chiffrée et ton objectif de repli.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Jouez 8 minutes chronométrées à trois : commercial(e), Sophie Navarro, Karim Belaïd.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Le reste du groupe forme la commission et évalue avec les 4 critères du chapitre.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> commence par faire confirmer la validation technique par Karim Belaïd, puis tourne-toi vers l'acheteuse.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Exemple de préparation : conclusion alternative (« maintenance 1 an ou 3 ans ? ») · vente complémentaire : sécheur d'air si l'air alimente des équipements sensibles · reformulation : ZV15 + installation = 10 650 € HT, dans le budget · repli : visite technique datée avec Karim Belaïd.</div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Critères observés : démarche proactive · outils adaptés au contexte · accord formalisé · action de suivi annoncée.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 18</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Les questions de la commission</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Après la simulation, la commission t'interroge pendant 10 minutes au maximum. Réponds à l'oral, 1 minute par question, devant le groupe.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>À quel moment avez-vous décidé de conclure, et pourquoi ?</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pourquoi avoir choisi cette technique de conclusion ?</p></div>
+      <div class="question"><span class="q-num">3</span><p>Quelle valeur ajoutée avez-vous apportée au client ?</p></div>
+      <div class="question"><span class="q-num">4</span><p>Quelles actions allez-vous mener après cet entretien ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Citer le signal d'achat précis repéré (verbal ou non verbal) et la façon dont tu l'as confirmé.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Relier la technique au profil de l'interlocuteur (acheteuse hésitante entre deux options → alternative).</div>
+      <div class="corr-etape"><span class="c-num">3</span> Conseil et prescription : solution adaptée au besoin, vente complémentaire justifiée, respect du budget.</div>
+      <div class="corr-etape"><span class="c-num">4</span> Compte rendu de visite, mise à jour du CRM, envoi du bon de commande ou de la confirmation, planification de l'installation, appel de satisfaction après la mise en service.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 19</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Changement de paramètre : le budget est gelé</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte"><strong>Acteurs :</strong> Sophie Navarro, acheteuse de la Clinique Saint-Roch / toi, technico-commercial(e) AIRVOLT. <strong>Contexte commercial :</strong> en début d'entretien, l'acheteuse annonce que la direction a gelé les investissements jusqu'au prochain conseil d'administration, dans 2 mois. <strong>Contexte technique :</strong> le compresseur actuel est en fin de vie et a connu 2 pannes ce trimestre. <strong>Contexte concurrentiel :</strong> un concurrent propose la location du matériel. <strong>Délimitation :</strong> de l'annonce du gel jusqu'à la prise de congé.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Redéfinis ton objectif principal et ton objectif de repli.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Formule une proposition qui permet d'obtenir une avancée malgré le gel.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Joue les 4 dernières minutes de l'entretien avec un binôme, jusqu'à la prise de congé.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> le risque de panne est un argument, la décision appartient au conseil d'administration : comment aider l'acheteuse à défendre le dossier ?</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Objectif principal : obtenir l'inscription du dossier au prochain conseil d'administration · objectif de repli : obtenir un rendez-vous daté avec Karim Belaïd pour chiffrer le coût des pannes.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : « Je vous prépare une note de deux pages pour votre conseil d'administration : coût des pannes du trimestre, offre chiffrée, et une option de location si l'achat reste bloqué. Je vous l'envoie vendredi, et nous en parlons lundi à 14 h ? »</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Attendus : pas de pression sur l'acheteuse, avancée concrète et datée, prise de congé complète, action de suivi annoncée.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 20</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Check-list de ta fiche descriptive</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta fiche descriptive doit être rendue en février. Les outils de conclusion font partie de ta stratégie de négociation.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Vérifie que ta fiche contient : tes objectifs haut, bas et de repli · 2 phrases de conclusion adaptées · une vente complémentaire justifiée · les conditions de vente (prix, remise possible, délai, paiement) · les actions de suivi prévues.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Note les 3 éléments à compléter en priorité et indique à qui tu demandes l'information dans ton entreprise.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Contenu attendu : stratégie de négociation (objectifs et outils) cohérente avec les acteurs et l'historique de la relation · outils en annexe (argumentaires, fiche de traitement des objections, phrases de conclusion, offre chiffrée).</div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Ton tuteur ou ta tutrice valide les conditions commerciales : marge de remise, délais réels, modalités de paiement.</p></div>
+    </div>
+  </div>
+</details>
+</main>
+
+<footer class="site-footer">
+  BTS CCST – Bloc 1, épreuve E5 &nbsp;|&nbsp; Chapitre 11 : conclure la négociation et prendre congé &nbsp;|&nbsp; 20 exercices progressifs
+</footer>
+
+
+<script>
+function toggleCorr(btn) {
+  const corr = btn.nextElementSibling;
+  const isVisible = corr.classList.contains('visible');
+  corr.classList.toggle('visible', !isVisible);
+  btn.textContent = isVisible ? '✅ Voir la correction' : '🔒 Masquer la correction';
+}
+</script>
+</body>
+</html>
